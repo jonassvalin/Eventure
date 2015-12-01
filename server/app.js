@@ -4,22 +4,32 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     bodyParser = require('body-parser'),
     expressSession = require('express-session'),
+    config = require('./config'),
     mongoose = require('mongoose'),
     hash = require('bcrypt-nodejs'),
     path = require('path'),
     passport = require('passport'),
-    localStrategy = require('passport-local' ).Strategy;
+    localStrategy = require('passport-local').Strategy;
 
 // mongoose localhost
 //mongoose.connect('mongodb://localhost/mean-auth');
 // mongoose heroku
-mongoose.connect('mongodb://jonassvalin:mongodb@ds031417.mongolab.com:31417/heroku_klg9fdtv');
+//mongoose.connect('mongodb://jonassvalin:mongodb@ds031417.mongolab.com:31417/heroku_klg9fdtv');
+//app.set('dbUrl', config.db[app.settings.env]);
+ // connect mongoose to the mongo dbUrl
+//mongoose.connect(app.get('dbUrl'));
+
+
 
 // user schema/model
 var User = require('./models/user.js');
 
 // create instance of express
 var app = express();
+
+app.set('dbUrl', config.db[app.settings.env]);
+ // connect mongoose to the mongo dbUrl
+mongoose.connect(app.get('dbUrl'));
 
 // require routes
 var routes = require('./routes/api.js');
