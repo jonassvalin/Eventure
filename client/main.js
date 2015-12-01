@@ -11,7 +11,10 @@ myApp.run(function ($rootScope, $location, $route, AuthService) {
 
 myApp.config(function ($routeProvider) {
   $routeProvider
-    .when('/', {templateUrl: 'partials/home.html'})
+    .when('/', {
+      templateUrl: 'partials/home.html',
+      access: {restricted: true}
+    })
     .when('/login', {
       templateUrl: 'partials/login.html',
       controller: 'loginController',
@@ -24,7 +27,7 @@ myApp.config(function ($routeProvider) {
     .when('/register', {
       templateUrl: 'partials/register.html',
       controller: 'registerController',
-      access: {restricted: true}
+      access: {restricted: false}
     })
     .when('/one', {
       template: '<h1>This is page one!</h1>',
@@ -34,5 +37,5 @@ myApp.config(function ($routeProvider) {
       template: '<h1>This is page two!</h1>',
       access: {restricted: false}
     })
-    .otherwise({redirectTo: '/'});
+    .otherwise({redirectTo: '/login'});
 });
