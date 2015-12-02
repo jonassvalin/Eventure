@@ -1,5 +1,29 @@
-<h1>Yo!</h1>
-
+<div ng-controller="eventController">
+  <h1>Upcoming events</h1>
+  <ul>
+    <li ng-repeat="event in events">
+      {{event.eventName}}
+    </li>
+  </ul>
+  <div class="col-md-4">
+    <h1>Add event</h1>
+    <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+    <form class="form" ng-submit="addEvent()">
+      <div class="form-group">
+        <label>Event name</label>
+        <input type="text" class="form-control" name="eventName" ng-model="eventForm.eventName" required>
+      </div>
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" class="form-control" name="eventDate" ng-model="eventForm.eventDate"
+       placeholder="yyyy-MM-dd" min="2013-01-01" required />
+      </div>
+      <div>
+        <button type="submit" class="btn btn-default" ng-disabled="disabled">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
 <div ng-controller="logoutController">
   <a ng-click='logout()' class="btn btn-default">Logout</a>
 </div>
