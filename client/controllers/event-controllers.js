@@ -26,8 +26,8 @@ angular.module('myApp').controller('eventController',
         .then(function () {
           $location.path('/');
           $scope.disabled = false;
+          $scope.events.push({ 'eventName' : $scope.eventForm.eventName});
           $scope.eventForm = {};
-          //$scope.events.push({ 'eventName' : $scope.eventForm.eventName});
         })
         // handle error
         .catch(function () {
