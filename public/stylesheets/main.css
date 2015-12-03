@@ -1,5 +1,29 @@
-body {
-    background-image: url('../images/eventure.jpg');
-    background-color: #cccccc;
-    background-size: 100%;
+.container-fluid {
+  background-color: #00ff99;
+  /*background-image: url('../images/eventure.jpg');
+  background-repeat: no-repeat;*/
+  background-size: 100%;
+}
+
+.col-centered {
+  float: none;
+  margin-right: auto;
+  margin-left: auto;
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
+}
+
+.col-test {
+  float: none;
+}
+
+.text-container {
+    height: 430px;
+    line-height: 400px;
+}
+
+.height-full {
+  height: 100vh;
 }
