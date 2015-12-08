@@ -1,8 +1,7 @@
 angular.module('myApp').controller('eventController',
   ['$scope', '$location', 'EventService',
   function ($scope, $location, EventService) {
-
-     EventService.getEvents()
+    EventService.getEvents()
       .then(function (value) {
         $scope.events = value;
       })
@@ -32,11 +31,34 @@ angular.module('myApp').controller('eventController',
         // handle error
         .catch(function () {
           $scope.error = true;
-          $scope.errorMessage = "Something went wrong!";
+          $scope.errorMessage = "Error: event could not be added";
           $scope.disabled = false;
           $scope.registerForm = {};
         });
 
-    };
+      };
+
+    $scope.removeEvent = function (eventName) {
+
+      // initial values
+      $scope.error = false;
+      $scope.disabled = true;
+
+      // call register from service
+      EventService.removeEvent(eventName)
+        // handle success
+        .then(function () {
+          $location.path('/');
+          $scope.disabled = false;
+          $scope.events.splice( $scope.events.indexOf(eventName), 1 );
+        })
+        // handle error
+        .catch(function () {
+          $scope.error = true;
+          $scope.errorMessage = "Error: event could not be removed";
+          $scope.disabled = false;
+        });
+
+      };
 
 }]);

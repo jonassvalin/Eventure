@@ -26,6 +26,30 @@ angular.module('myApp').factory('EventService',
       return deferred.promise;
     }
 
+    function removeEvent(eventName) {
+      // create a new instance of deferred
+      var deferred = $q.defer();
+
+      // send a post request to the server
+      $http.delete('/event/remove/' + eventName)
+        // handle success
+        .success(function (data, status) {
+          console.log('Data: ' + data);
+          if(status === 200){
+            deferred.resolve(data);
+          } else {
+            deferred.reject();
+          }
+        })
+        // handle error
+        .error(function (status) {
+          deferred.reject();
+        });
+
+      // return promise object
+      return deferred.promise;
+    }
+
     function getEvents() {
       // create a new instance of deferred
       var deferred = $q.defer();
@@ -50,6 +74,7 @@ angular.module('myApp').factory('EventService',
     // return available functions for use in controllers
     return ({
       addEvent: addEvent,
+      removeEvent: removeEvent,
       getEvents: getEvents
     });
 }]);
