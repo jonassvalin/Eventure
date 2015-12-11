@@ -59,6 +59,42 @@ angular.module('myApp').controller('eventController',
           $scope.disabled = false;
         });
 
-      };
+    };
+
+    $scope.goToEvent = function (eventName) {
+
+      // initial values
+      $scope.error = false;
+      $scope.disabled = true;
+
+      // call register from service
+      EventService.getEventDetails(eventName)
+        // handle success
+        .then(function (eventData) {
+          $location.path('/event/' + eventName);
+        })
+        // handle error
+        .catch(function () {
+          $scope.error = true;
+          $scope.errorMessage = "Error: event page could not be retrieved";
+          $scope.disabled = false;
+        });
+
+    };
+
+}]);
+
+angular.module('myApp').controller('eventPageController',
+  ['$scope', '$location', '$routeParams', 'EventService',
+  function ($scope, $location, $routeParams, EventService) {
+    EventService.getEventDetails($routeParams.eventName)
+      .then(function (eventData) {
+        $scope.eventData = eventData;
+      })
+      .catch(function () {
+        $scope.error = true;
+        $scope.errorMessage = "Unable to retrieve data for this event";
+        $scope.disabled = false;
+      });
 
 }]);

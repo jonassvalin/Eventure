@@ -28,5 +28,12 @@ router.get('/get', function(req, res) {
   })
 });
 
+router.get('/get/:eventName', function(req, res) {
+  Event.findOne({ eventName: req.params.eventName}, function(err, event) {
+    if (err) res.status(500).json({err: err});
+    res.status(200).json(event);
+  })
+});
+
 
 module.exports = router;

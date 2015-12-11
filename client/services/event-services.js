@@ -71,10 +71,34 @@ angular.module('myApp').factory('EventService',
       return deferred.promise;
     }
 
+    function getEventDetails(eventName) {
+      // create a new instance of deferred
+      var deferred = $q.defer();
+
+      // send a get request to the server
+
+      $http.get('event/get/' + eventName)
+        .success(function (data, status) {
+          if(status === 200){ //&& data.status
+            deferred.resolve(data);
+          } else {
+            deferred.reject();
+          }
+        })
+        // handle error
+        .error(function (data) {
+          deferred.reject();
+        });
+
+      //deferred.resolve(JSON.parse('{"name": "Woho", "details": "Woho is a great event" }'));
+      return deferred.promise;
+    }
+
     // return available functions for use in controllers
     return ({
       addEvent: addEvent,
       removeEvent: removeEvent,
-      getEvents: getEvents
+      getEvents: getEvents,
+      getEventDetails: getEventDetails
     });
 }]);
