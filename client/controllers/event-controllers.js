@@ -50,7 +50,7 @@ angular.module('myApp').controller('eventController',
         .then(function () {
           $location.path('/');
           $scope.disabled = false;
-          var index = 10;
+          var index;
           var array = $scope.events;
           for(var i = 0; i < array.length; i++) {
             if(array[i]['eventName'] === eventName) {
