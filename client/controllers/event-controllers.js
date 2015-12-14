@@ -50,7 +50,15 @@ angular.module('myApp').controller('eventController',
         .then(function () {
           $location.path('/');
           $scope.disabled = false;
-          $scope.events.splice( $scope.events.indexOf(eventName), 1 );
+          var index = 10;
+          var array = $scope.events;
+          for(var i = 0; i < array.length; i++) {
+            if(array[i]['eventName'] === eventName) {
+              index = array.indexOf(array[i]);
+              break;
+            }
+          }
+          array.splice( index, 1 );
         })
         // handle error
         .catch(function () {

@@ -34,7 +34,6 @@ angular.module('myApp').factory('EventService',
       $http.delete('/event/remove/' + eventName)
         // handle success
         .success(function (data, status) {
-          console.log('Data: ' + data);
           if(status === 200){
             deferred.resolve(data);
           } else {
