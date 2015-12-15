@@ -8,7 +8,7 @@ angular.module('myApp').factory('EventService',
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post('/event/add', {eventName: eventName, eventDate: eventDate})
+      $http.post('/event', {eventName: eventName, eventDate: eventDate})
         // handle success
         .success(function (data, status) {
           if(status === 200 && data.status){
@@ -31,7 +31,7 @@ angular.module('myApp').factory('EventService',
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.delete('/event/remove/' + eventName)
+      $http.delete('/event/' + eventName)
         // handle success
         .success(function (data, status) {
           if(status === 200){
@@ -54,7 +54,7 @@ angular.module('myApp').factory('EventService',
       var deferred = $q.defer();
 
       // send a get request to the server
-      $http.get('event/get')
+      $http.get('event')
         .success(function (data, status) {
           if(status === 200){ //&& data.status
             deferred.resolve(data);
@@ -76,7 +76,7 @@ angular.module('myApp').factory('EventService',
 
       // send a get request to the server
 
-      $http.get('event/get/' + eventName)
+      $http.get('event/' + eventName)
         .success(function (data, status) {
           if(status === 200){ //&& data.status
             deferred.resolve(data);
