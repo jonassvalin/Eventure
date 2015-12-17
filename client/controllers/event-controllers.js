@@ -23,7 +23,7 @@ angular.module('myApp').controller('eventController',
       EventService.addEvent($scope.eventForm)
         // handle success
         .then(function () {
-          $location.path('/');
+          $location.path('/overview');
           $scope.disabled = false;
           $scope.events.push($scope.eventForm);
           $scope.eventForm = {};
@@ -53,7 +53,6 @@ angular.module('myApp').controller('eventPageController',
   function ($scope, $location, $routeParams, EventService) {
     EventService.getEventDetails($routeParams.name)
       .then(function (eventData) {
-        console.log(eventData);
         $scope.event = eventData;
       })
       .catch(function () {
@@ -72,7 +71,7 @@ angular.module('myApp').controller('eventPageController',
         EventService.removeEvent(name)
           // handle success
           .then(function () {
-            $location.path('/');
+            $location.path('/overview');
             $scope.disabled = false;
           })
           // handle error

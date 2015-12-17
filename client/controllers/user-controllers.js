@@ -14,7 +14,7 @@ angular.module('myApp').controller('loginController',
       AuthService.login($scope.loginForm.username, $scope.loginForm.password)
         // handle success
         .then(function () {
-          $location.path('/');
+          $location.path('/overview');
           $scope.disabled = false;
           $scope.loginForm = {};
         })
@@ -84,5 +84,53 @@ angular.module('myApp').controller('registerController',
         });
 
     };
+
+}]);
+
+angular.module('myApp').controller('sideBarController',
+  ['$scope', '$location', 'AuthService',
+  function ($scope, $location, AuthService) {
+
+    AuthService.getUserDetails()
+      // handle success
+      .then(function (data) {
+        $scope.userData = data;
+        $scope.disabled = false;
+      })
+      // handle error
+      .catch(function (data) {
+        $scope.error = true;
+        $scope.errorMessage = "Something went wrong!";
+        $scope.disabled = false;
+      });
+
+    $scope.getClass = function (path) {
+      if ($location.path().substr(0, path.length) === path) {
+        return 'active';
+      } else {
+        return '';
+      }
+    }
+
+    $scope.logout = function () {
+
+      $scope.error = false;
+      $scope.disabled = true;
+
+      // call logout from service
+      AuthService.logout()
+        .then(function () {
+          $location.path('/login');
+        });
+
+    };
+
+}]);
+
+angular.module('myApp').controller('settingsController',
+  ['$scope', '$location', 'AuthService',
+  function ($scope, $location, AuthService) {
+
+    // insert settings controller stuf
 
 }]);

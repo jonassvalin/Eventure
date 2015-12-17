@@ -1,23 +1,28 @@
 <div class="row">
-  <!-- col-md-3 -->
+  <!-- SIDEBAR col-md-2 -->
   <div ng-include src="'./views/partials/sidebar.html'"></div>
+  <!-- END SIDEBAR -->
 
-  <div class="col-md-5">
+  <!-- UPCOMING EVENTS -->
+  <div class="col-md-6">
     <h1>UPCOMING</h1>
     <ul class="list-unstyled">
       <li ng-repeat="event in events">
-        <h3><a ng-click="goToEvent(event.name)">{{event.name}}</a></h3>
+        <h3><a href="" ng-click="goToEvent(event.name)">{{event.name}}</a></h3>
         <p>
-          <h6>{{event.date | date:"MM/dd/yyyy 'at' h:mma"}}</h6>
+          <h6>{{event.date | date:"yyyy/MM/dd 'at' h:mma"}}</h6>
         </p>
         <p>
-          <h4>{{event.description | limitTo:200}} ...</h4>
+          <h5>{{event.description | limitTo:200}} ...</h5>
         </p>
       </li>
     </ul>
   </div>
+  <!-- END OF UPCOMING EVENTS -->
+
+  <!-- ADD EVENT FORM -->
   <div class="col-md-4">
-    <h1>Add event</h1>
+    <h1>ADD EVENT</h1>
     <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
     <form class="form" ng-submit="addEvent()">
       <div class="form-group">
@@ -39,4 +44,6 @@
       </div>
     </form>
   </div>
+  <!-- END OF ADD EVENT FORM -->
+
 </div>

@@ -5,8 +5,10 @@ var express = require('express'),
 
 
 router.post('/register', function(req, res) {
-  User.register(new User(req.body), function(err, account) {
+  var user = new User(req.body);
+  User.register(user, req.body.password, function(err, account) {
     if (err) {
+      console.log(err);
       return res.status(500).json({err: err})
     }
     passport.authenticate('local')(req, res, function () {
@@ -33,6 +35,10 @@ router.post('/login', function(req, res, next) {
 router.get('/logout', function(req, res) {
   req.logout();
   res.status(200).json({status: 'Bye!'})
+});
+
+router.get('/userinfo', function(req, res) {
+  res.status(200).json(req.user)
 });
 
 module.exports = router;

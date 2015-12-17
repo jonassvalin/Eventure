@@ -18,6 +18,29 @@ angular.module('myApp').factory('AuthService',
       return user;
     }
 
+    function getUserDetails() {
+      // create a new instance of deferred
+      var deferred = $q.defer();
+
+      // send a post request to the server
+      $http.get('/user/userInfo')
+        // handle success
+        .success(function (data, status) {
+          if(status === 200){
+            deferred.resolve(data);
+          } else {
+            deferred.reject(data);
+          }
+        })
+        // handle error
+        .error(function (data) {
+          deferred.reject(data);
+        });
+
+      // return promise object
+      return deferred.promise;
+    }
+
     function login(username, password) {
 
       // create a new instance of deferred
@@ -97,6 +120,7 @@ angular.module('myApp').factory('AuthService',
     return ({
       isLoggedIn: isLoggedIn,
       getUserStatus: getUserStatus,
+      getUserDetails: getUserDetails,
       login: login,
       logout: logout,
       register: register

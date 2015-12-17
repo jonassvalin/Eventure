@@ -11,8 +11,8 @@ myApp.run(function ($rootScope, $location, $route, AuthService) {
 
 myApp.config(function ($routeProvider) {
   $routeProvider
-    .when('/', {
-      templateUrl: 'views/pages/home.html',
+    .when('/overview', {
+      templateUrl: 'views/pages/overview.html',
       controller: 'eventController',
       access: {restricted: true}
     })
@@ -33,6 +33,11 @@ myApp.config(function ($routeProvider) {
     .when('/eventPage/:name', {
       templateUrl: 'views/pages/event.html',
       controller: 'eventPageController',
+      access: {restricted: true}
+    })
+    .when('/settings', {
+      templateUrl: 'views/pages/settings.html',
+      controller: 'settingsController',
       access: {restricted: true}
     })
     .otherwise({redirectTo: '/login'});

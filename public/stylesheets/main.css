@@ -1,4 +1,12 @@
+body {
+  background-color: #f2f2f2;
+}
+
 .headline {
   font-size: 200px;
   text-decoration: line-through;
+}
+
+.preserve-new-lines {
+  white-space: pre-line;
 }

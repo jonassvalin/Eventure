@@ -1,5 +1,5 @@
-<div class="profile">
-  <div class="col-md-3">
+<div class="profile" ng-controller="sideBarController">
+  <div class="col-md-2">
     <div class="profile-sidebar">
       <!-- SIDEBAR USERPIC -->
       <div class="profile-userpic">
@@ -9,39 +9,47 @@
       <!-- SIDEBAR USER TITLE -->
       <div class="profile-usertitle">
         <div class="profile-usertitle-name">
-          Marcus Doe
+          {{userData.firstName + " " + userData.lastName}}
         </div>
+
+        <!--CURRENTLY UNUSED USER TITLE
         <div class="profile-usertitle-job">
           Developer
         </div>
+        -->
+
       </div>
       <!-- END SIDEBAR USER TITLE -->
       <!-- SIDEBAR BUTTONS -->
+
+      <!--CURRENTLY UNUSED BUTTONS FOR MESSAGING ETC
       <div class="profile-userbuttons">
         <button type="button" class="btn btn-success btn-sm">Follow</button>
         <button type="button" class="btn btn-danger btn-sm">Message</button>
       </div>
+      -->
+
       <!-- END SIDEBAR BUTTONS -->
       <!-- SIDEBAR MENU -->
       <div class="profile-usermenu">
         <ul class="nav">
-          <li class="active">
-            <a href="#">
+          <li ng-class="getClass('overview')"> <!-- class="active"> -->
+            <a href="#/overview">
             <i class="glyphicon glyphicon-home"></i>
             Overview </a>
           </li>
-          <li>
-            <a href="#">
+          <li ng-class="getClass('settings')">
+            <a href="#/settings">
             <i class="glyphicon glyphicon-user"></i>
-            Account Settings </a>
+            Settings </a>
           </li>
-          <li>
-            <a href="#" target="_blank">
+          <li ng-class="getClass('tasks')">
+            <a href="#">
             <i class="glyphicon glyphicon-ok"></i>
             Tasks </a>
           </li>
           <li ng-controller="logoutController">
-            <a ng-click='logout()'>
+            <a href="" ng-click='logout()'>
             <i class="glyphicon glyphicon-flag"></i>
             Logout </a>
           </li>
