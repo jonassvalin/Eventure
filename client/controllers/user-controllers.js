@@ -40,6 +40,9 @@ angular.module('myApp').controller('logoutController',
 
     $scope.logout = function () {
 
+      $scope.error = false;
+      $scope.disabled = true;
+
       console.log(AuthService.getUserStatus());
 
       // call logout from service
@@ -65,7 +68,7 @@ angular.module('myApp').controller('registerController',
       $scope.disabled = true;
 
       // call register from service
-      AuthService.register($scope.registerForm.username, $scope.registerForm.password)
+      AuthService.register($scope.registerForm)
         // handle success
         .then(function () {
           $location.path('/login');

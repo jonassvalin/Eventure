@@ -1,6 +1,6 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.1.5",
+  "name": "Eventure",
+  "version": "0.1.0",
   "description": "A sample Node.js app using Express 4",
   "main": "index.js",
   "scripts": {

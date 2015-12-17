@@ -12,12 +12,12 @@ myApp.run(function ($rootScope, $location, $route, AuthService) {
 myApp.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/home.html',
+      templateUrl: 'views/pages/home.html',
       controller: 'eventController',
       access: {restricted: true}
     })
     .when('/login', {
-      templateUrl: 'partials/login.html',
+      templateUrl: 'views/pages/login.html',
       controller: 'loginController',
       access: {restricted: false}
     })
@@ -26,12 +26,12 @@ myApp.config(function ($routeProvider) {
       access: {restricted: true}
     })
     .when('/register', {
-      templateUrl: 'partials/register.html',
+      templateUrl: 'views/pages/register.html',
       controller: 'registerController',
       access: {restricted: false}
     })
-    .when('/event/:eventName', {
-      templateUrl: 'partials/event.html',
+    .when('/eventPage/:name', {
+      templateUrl: 'views/pages/event.html',
       controller: 'eventPageController',
       access: {restricted: true}
     })

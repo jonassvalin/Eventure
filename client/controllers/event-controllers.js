@@ -20,12 +20,12 @@ angular.module('myApp').controller('eventController',
       $scope.disabled = true;
 
       // call register from service
-      EventService.addEvent($scope.eventForm.eventName, $scope.eventForm.eventDate)
+      EventService.addEvent($scope.eventForm)
         // handle success
         .then(function () {
           $location.path('/');
           $scope.disabled = false;
-          $scope.events.push({ 'eventName' : $scope.eventForm.eventName});
+          $scope.events.push($scope.eventForm);
           $scope.eventForm = {};
         })
         // handle error
@@ -38,56 +38,12 @@ angular.module('myApp').controller('eventController',
 
       };
 
-    $scope.removeEvent = function (eventName) {
+    $scope.goToEvent = function (name) {
 
       // initial values
       $scope.error = false;
       $scope.disabled = true;
-
-      // call register from service
-      EventService.removeEvent(eventName)
-        // handle success
-        .then(function () {
-          $location.path('/');
-          $scope.disabled = false;
-          var index;
-          var array = $scope.events;
-          for(var i = 0; i < array.length; i++) {
-            if(array[i]['eventName'] === eventName) {
-              index = array.indexOf(array[i]);
-              break;
-            }
-          }
-          array.splice( index, 1 );
-        })
-        // handle error
-        .catch(function () {
-          $scope.error = true;
-          $scope.errorMessage = "Error: event could not be removed";
-          $scope.disabled = false;
-        });
-
-    };
-
-    $scope.goToEvent = function (eventName) {
-
-      // initial values
-      $scope.error = false;
-      $scope.disabled = true;
-
-      // call register from service
-      EventService.getEventDetails(eventName)
-        // handle success
-        .then(function (eventData) {
-          $location.path('/event/' + eventName);
-        })
-        // handle error
-        .catch(function () {
-          $scope.error = true;
-          $scope.errorMessage = "Error: event page could not be retrieved";
-          $scope.disabled = false;
-        });
-
+      $location.path('/eventPage/' + name);
     };
 
 }]);
@@ -95,14 +51,37 @@ angular.module('myApp').controller('eventController',
 angular.module('myApp').controller('eventPageController',
   ['$scope', '$location', '$routeParams', 'EventService',
   function ($scope, $location, $routeParams, EventService) {
-    EventService.getEventDetails($routeParams.eventName)
+    EventService.getEventDetails($routeParams.name)
       .then(function (eventData) {
-        $scope.eventData = eventData;
+        console.log(eventData);
+        $scope.event = eventData;
       })
       .catch(function () {
         $scope.error = true;
         $scope.errorMessage = "Unable to retrieve data for this event";
         $scope.disabled = false;
       });
+
+      $scope.removeEvent = function (name) {
+
+        // initial values
+        $scope.error = false;
+        $scope.disabled = true;
+
+        // call register from service
+        EventService.removeEvent(name)
+          // handle success
+          .then(function () {
+            $location.path('/');
+            $scope.disabled = false;
+          })
+          // handle error
+          .catch(function () {
+            $scope.error = true;
+            $scope.errorMessage = "Error: event could not be removed";
+            $scope.disabled = false;
+          });
+
+      };
 
 }]);

@@ -7,11 +7,12 @@
   <!-- styles -->
   <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.4/yeti/bootstrap.min.css" rel="stylesheet">
   <link href="./../public/stylesheets/main.css" rel="stylesheet" type="text/css">
+  <link href="./../public/stylesheets/sidebar.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-
-  <div class="container-fluid">
+  <div ng-include src="'./views/partials/header.html'"></div>
+  <div class="container">
     <div ng-view></div>
   </div>
 

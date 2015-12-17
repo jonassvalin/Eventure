@@ -1,0 +1,16 @@
+<div class="row">
+  <div ng-include src="'./views/partials/sidebar.html'"></div> <!-- col-md-3 -->
+  <div class="col-md-5">
+    <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+    <h1>{{event.name}}</h1>
+    <button type="button" class="btn btn-default btn-xs" ng-click="removeEvent(event.name)">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </button>
+    <p>
+      <h6>{{event.date | date:"dd/mm/yyyy 'at' h:mma"}}</h6>
+    </p>
+    <p>
+      <h5>{{event.description}}</h5>
+    </p>
+  </div>
+</div>

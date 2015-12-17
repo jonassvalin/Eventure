@@ -4,7 +4,7 @@ var express = require('express'),
 
 
 router.post('/', function(req, res) {
-  var event = new Event({ eventName: req.body.eventName, eventDate: req.body.eventDate });
+  var event = new Event(req.body);
   event.save(function(err, account) {
     if (err) {
       return res.status(500).json({err: err})
@@ -13,10 +13,9 @@ router.post('/', function(req, res) {
   });
 });
 
-router.delete('/:eventName', function(req, res) {
-  Event.remove({ eventName: req.params.eventName }, function(err) {
+router.delete('/:name', function(req, res) {
+  Event.remove({ name: req.params.name }, function(err) {
     if (err) return res.status(500).json({err: err});
-    //res.body = events;
     res.status(200).json({status: 'Event removed successfully!'});
   })
 });
@@ -28,8 +27,8 @@ router.get('/', function(req, res) {
   })
 });
 
-router.get('/:eventName', function(req, res) {
-  Event.findOne({ eventName: req.params.eventName}, function(err, event) {
+router.get('/:name', function(req, res) {
+  Event.findOne({ name: req.params.name}, function(err, event) {
     if (err) res.status(500).json({err: err});
     res.status(200).json(event);
   })

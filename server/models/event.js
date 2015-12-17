@@ -4,8 +4,9 @@ var mongoose = require('mongoose'),
 
 
 var Event = new Schema({
-  eventName: String,
-  date: Date
+  name: String,
+  date: Date,
+  description: String
 });
 
 module.exports = mongoose.model('events', Event);

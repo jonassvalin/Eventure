@@ -3,12 +3,12 @@ angular.module('myApp').factory('EventService',
   function ($q, $timeout, $http) {
 
     //define functions
-    function addEvent(eventName, eventDate) {
+    function addEvent(eventForm) {
       // create a new instance of deferred
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post('/event', {eventName: eventName, eventDate: eventDate})
+      $http.post('/event', eventForm)
         // handle success
         .success(function (data, status) {
           if(status === 200 && data.status){
@@ -26,12 +26,12 @@ angular.module('myApp').factory('EventService',
       return deferred.promise;
     }
 
-    function removeEvent(eventName) {
+    function removeEvent(name) {
       // create a new instance of deferred
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.delete('/event/' + eventName)
+      $http.delete('/event/' + name)
         // handle success
         .success(function (data, status) {
           if(status === 200){
@@ -70,13 +70,13 @@ angular.module('myApp').factory('EventService',
       return deferred.promise;
     }
 
-    function getEventDetails(eventName) {
+    function getEventDetails(name) {
       // create a new instance of deferred
       var deferred = $q.defer();
 
       // send a get request to the server
 
-      $http.get('event/' + eventName)
+      $http.get('event/' + name)
         .success(function (data, status) {
           if(status === 200){ //&& data.status
             deferred.resolve(data);
@@ -89,7 +89,6 @@ angular.module('myApp').factory('EventService',
           deferred.reject();
         });
 
-      //deferred.resolve(JSON.parse('{"name": "Woho", "details": "Woho is a great event" }'));
       return deferred.promise;
     }
 

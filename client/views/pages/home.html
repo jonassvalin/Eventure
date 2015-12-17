@@ -1,0 +1,42 @@
+<div class="row">
+  <!-- col-md-3 -->
+  <div ng-include src="'./views/partials/sidebar.html'"></div>
+
+  <div class="col-md-5">
+    <h1>UPCOMING</h1>
+    <ul class="list-unstyled">
+      <li ng-repeat="event in events">
+        <h3><a ng-click="goToEvent(event.name)">{{event.name}}</a></h3>
+        <p>
+          <h6>{{event.date | date:"MM/dd/yyyy 'at' h:mma"}}</h6>
+        </p>
+        <p>
+          <h4>{{event.description | limitTo:200}} ...</h4>
+        </p>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-4">
+    <h1>Add event</h1>
+    <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+    <form class="form" ng-submit="addEvent()">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" name="name" ng-model="eventForm.name" placeholder="Artist, event, ..." required>
+      </div>
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" class="form-control" name="date" ng-model="eventForm.date"
+       placeholder="yyyy-mm-dd" min="2013-01-01" required />
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea class="form-control" name="description" cols="40" rows="5" ng-model="eventForm.description"
+       placeholder="Description..." required></textarea>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-default" ng-disabled="disabled">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
