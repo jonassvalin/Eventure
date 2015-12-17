@@ -6,6 +6,7 @@
   <!-- UPCOMING EVENTS -->
   <div class="col-md-6">
     <h1>UPCOMING</h1>
+    <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
     <ul class="list-unstyled">
       <li ng-repeat="event in events">
         <h3><a href="" ng-click="goToEvent(event.name)">{{event.name}}</a></h3>
@@ -23,7 +24,6 @@
   <!-- ADD EVENT FORM -->
   <div class="col-md-4">
     <h1>ADD EVENT</h1>
-    <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
     <form class="form" ng-submit="addEvent()">
       <div class="form-group">
         <label>Name</label>
