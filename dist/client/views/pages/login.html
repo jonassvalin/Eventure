@@ -1,0 +1,23 @@
+<!-- HEADLINE -->
+<div class="headline col-md-10 col-md-offset-1">
+  EVENTURE
+</div>
+<!-- END HEADLINE -->
+
+<!-- LOGIN FORM -->
+<div class="col-md-4 col-md-offset-4">
+  <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+  <form class="form" ng-submit="login()">
+    <div class="form-group">
+      <input type="text" class="form-control" name="username" ng-model="loginForm.username" placeholder="Username" required>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" name="password" ng-model="loginForm.password" placeholder="Password" required>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-default" ng-disabled="disabled">Login</button>
+        <button ng-click="register()" class="btn btn-default" ng-disabled="disabled">Register</button>
+      </div>
+  </form>
+</div>
+<!-- END LOGIN FORM -->

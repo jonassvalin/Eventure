@@ -1,0 +1,61 @@
+<div class="profile" ng-controller="sideBarController">
+  <div class="col-md-2">
+    <div class="profile-sidebar">
+      <!-- SIDEBAR USERPIC -->
+      <div class="profile-userpic">
+        <img src="/public/images/nouserimage.png" class="img-responsive" alt="">
+      </div>
+      <!-- END SIDEBAR USERPIC -->
+      <!-- SIDEBAR USER TITLE -->
+      <div class="profile-usertitle">
+        <div class="profile-usertitle-name">
+          {{userData.firstName + " " + userData.lastName}}
+        </div>
+
+        <!--CURRENTLY UNUSED USER TITLE
+        <div class="profile-usertitle-job">
+          Developer
+        </div>
+        -->
+
+      </div>
+      <!-- END SIDEBAR USER TITLE -->
+      <!-- SIDEBAR BUTTONS -->
+
+      <!--CURRENTLY UNUSED BUTTONS FOR MESSAGING ETC
+      <div class="profile-userbuttons">
+        <button type="button" class="btn btn-success btn-sm">Follow</button>
+        <button type="button" class="btn btn-danger btn-sm">Message</button>
+      </div>
+      -->
+
+      <!-- END SIDEBAR BUTTONS -->
+      <!-- SIDEBAR MENU -->
+      <div class="profile-usermenu">
+        <ul class="nav">
+          <li ng-class="getClass('overview')"> <!-- class="active"> -->
+            <a href="#/overview">
+            <i class="glyphicon glyphicon-home"></i>
+            Overview </a>
+          </li>
+          <li ng-class="getClass('settings')">
+            <a href="#/settings">
+            <i class="glyphicon glyphicon-user"></i>
+            Settings </a>
+          </li>
+          <li ng-class="getClass('tasks')">
+            <a href="#">
+            <i class="glyphicon glyphicon-ok"></i>
+            Tasks </a>
+          </li>
+          <li>
+            <a href="" ng-click='logout()'>
+            <i class="glyphicon glyphicon-flag"></i>
+            Logout </a>
+          </li>
+        </ul>
+      </div>
+      <!-- END MENU -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="row">
+
+  <!-- SIDEBAR -->
+  <div ng-include src="'./views/partials/sidebar.html'"></div> <!-- col-md-2 -->
+  <!-- END SIDEBAR -->
+
+  <div class="col-md-6">
+    <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+
+    <!-- EVENT NAME AND DELETE BUTTON -->
+    <h1>
+      {{event.name}}
+      <button type="button" class="btn btn-danger btn-xs"
+      ng-really-message="Are you sure you want to delete the event: {{event.name}}?"
+      ng-really-click="removeEvent(event.name)">
+        DELETE
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </button>
+    </h1>
+    <!-- END EVENT NAME AND DELETE BUTTON -->
+
+    <!-- DATE -->
+    <p>
+      <h6>{{event.date | date:"yyyy/MM/dd 'at' h:mma"}}</h6>
+    </p>
+    <!-- END DATE -->
+
+    <!-- DESCRIPTION -->
+    <div class="preserve-new-lines">
+      <p>
+        <h5>{{event.description}}</h5>
+      </p>
+    </div>
+    <!-- END DESCRIPTION -->
+
+  </div>
+</div>
