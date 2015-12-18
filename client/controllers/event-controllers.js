@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('myApp').controller('eventController',
   ['$scope', '$location', 'EventService',
   function ($scope, $location, EventService) {

@@ -1,14 +1,15 @@
+"use strict";
+
 var express = require('express'),
     router = express.Router(),
-    passport = require('passport');
+    passport = require('passport'),
     User = require('../models/user.js');
 
 
 router.post('/register', function(req, res) {
-  var user = new User(req.body);
-  User.register(user, req.body.password, function(err, account) {
+  var newUser = new User(req.body);
+  User.register(newUser, req.body.password, function(err, account) {
     if (err) {
-      console.log(err);
       return res.status(500).json({err: err})
     }
     passport.authenticate('local')(req, res, function () {

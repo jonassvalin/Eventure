@@ -1,3 +1,5 @@
+"use strict";
+
 // dependencies
 var express = require('express'),
     logger = require('morgan'),

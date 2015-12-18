@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('myApp').factory('EventService',
   ['$q', '$timeout', '$http',
   function ($q, $timeout, $http) {

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+"use strict";
 
 var debug = require('debug')('passport-mongo'),
     app = require('./app');
