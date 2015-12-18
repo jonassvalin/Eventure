@@ -34,27 +34,6 @@ angular.module('myApp').controller('loginController',
 
 }]);
 
-angular.module('myApp').controller('logoutController',
-  ['$scope', '$location', 'AuthService',
-  function ($scope, $location, AuthService) {
-
-    $scope.logout = function () {
-
-      $scope.error = false;
-      $scope.disabled = true;
-
-      console.log(AuthService.getUserStatus());
-
-      // call logout from service
-      AuthService.logout()
-        .then(function () {
-          $location.path('/login');
-        });
-
-    };
-
-}]);
-
 angular.module('myApp').controller('registerController',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {
